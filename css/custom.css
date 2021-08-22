@@ -33,16 +33,40 @@ html {
   font-size: 0;
 }
 
+/* current page link */
+.current-page {
+  background: #0c5063;
+  color: #fff !important;
+  border-radius: 0.2rem;
+  padding-left: 10px !important;
+}
+
 /* LAYOUT
 -------------------------- */
+.navbar-nav {
+  display: none;
+}
+
+/* header */
+.navbar-brand img {
+  width: 10rem;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* offcanvas menu */
 .overlay {
   opacity: 0.8;
   transition: transform 0.5s ease-in;
+  display: none;
 }
 
 .offcanvas {
   width: 20rem;
-  /* transform: translateX(-100%); */
+  transform: translateX(-100%);
   transition: transform 0.5s ease-in;
 }
 
@@ -54,19 +78,59 @@ html {
   list-style: none;
 }
 
+#menu-btn {
+  left: 0;
+}
 
+#menu-btn .bi {
+  font-size: 1.5rem !important;
+}
 
+.offcanvas-active {
+  transform: translateX(0%);
+}
 
+.close-btn {
+  right: 30px;
+  top: 20px;
+}
+
+/* footer */
+footer {
+  left: 0;
+}
+
+/* padding */
+.p-5 {
+  padding: 1rem !important;
+}
 
 /* COMPONENTS
 -------------------------- */
+/* buttons */
+.btn-secondary {
+  background-color: transparent !important;
+  color: #212121 !important;
+  font-size: 0;
+  border: 0;
+}
+
+#contact-btn {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
+
+/* icons */
+.bi {
+  font-size: 1.5rem;
+}
 
 /* UTILS
 -------------------------- */
 [aria-hidden="true"] {
   display: none;
 }
-
 
 /* ANIMATIONS
 ------------------------- */
@@ -125,3 +189,41 @@ html {
 
 /* BREAKPOINTS
 ------------------------- */
+/* small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  /* header */
+  .navbar-nav {
+    display: initial;
+  }
+
+  .navbar-brand img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    left: initial;
+    transform: none;
+  }
+
+  /* offcanvas */
+  #menu-btn {
+    display: none;
+  }
+
+  /* layout */
+  .p-5 {
+    padding: 3rem !important;
+  }
+}
+
+/* large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
