@@ -5,5 +5,6 @@ class Book {
     this.cover;
     this.summary;
     this.status;
+    this.id;
   }
 }

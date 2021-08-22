@@ -78,6 +78,7 @@ html {
 
 .offcanvas__nav li {
   list-style: none;
+  opacity: 0;
 }
 
 #menu-btn {
@@ -198,7 +199,7 @@ btn-primary:not(:disabled):not(.disabled).active,
   color: #fff !important;
 }
 
-
+/* modal */
 .modal {
   animation: cardSlideIn 0.5s ease-in-out;
 }
@@ -206,6 +207,11 @@ btn-primary:not(:disabled):not(.disabled).active,
 /* form */
 input[type="file"] {
   line-height: 1.2 !important;
+}
+
+/* card */
+.card {
+  animation: cardSlideIn 1s ease-in-out;
 }
 
 /* icons */
@@ -224,11 +230,11 @@ input[type="file"] {
 @keyframes offcanvasFadeIn {
   from {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(-100%);
   }
   to {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 }
 
@@ -255,7 +261,7 @@ input[type="file"] {
 @keyframes slideFromLeft {
   from {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(50px);
   }
   to {
     opacity: 1;
