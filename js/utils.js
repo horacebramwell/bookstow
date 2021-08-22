@@ -13,6 +13,21 @@ class Utils {
     });
   }
 
+
+  static buildStats(num, msg){
+    const HTML = `
+    <div class="col-sm-6 col-md-6 col-xl-3 mb-3">
+      <div class="card rounded border text-cent py-5">
+        <div class = "card-body">
+          <h2 class ="card-title text-primary">${num}</h2>
+          <h6 class = "card-subtitle mb-2 m-1 text-secondary">${msg}</h6>
+        </div>
+      </div>
+    </div>`
+
+    return HTML;
+  }
+
   // load from local storage
   static loadFromStorage() {
     const books = [];

@@ -38,26 +38,44 @@ class Controller {
     const booksLoadedEvent = new Event("books_loaded");
     booksLoadedEvent.books = this.books;
     document.dispatchEvent(booksLoadedEvent);
-
   }
 }
 
 // application model
 class Model {
   constructor() {
-    document.addEventListener("books_loaded", e => this.process(e));
+    document.addEventListener("books_loaded", (e) => this.process(e));
   }
 
-  process(e){
+  process(e) {
     const booksToRead = [];
     const booksRead = [];
     const booksCurrentlyReading = [];
-    const path = window.location.pathname;
 
     // add to appropriate array
     e.books.forEach((book) => {
-      
+      switch (book.status) {
+        case "bookmarked":
+          booksToRead.push(book);
+          break;
+        case "read":
+          booksRead.push(book);
+          break;
+        case "reading":
+          booksCurrentlyReading.push(book);
+          break;
+        default:
+          break;
+      }
     });
+
+    // Send books to the view
+    const booksProcessedEvent = new Event("books_processed");
+    booksProcessedEvent.allBooks = e.books;
+    booksProcessedEvent.booksToRead = booksToRead;
+    booksProcessedEvent.booksRead = booksRead;
+    booksProcessedEvent.booksCurrentlyReading = booksCurrentlyReading;
+    document.dispatchEvent(booksProcessedEvent);
   }
 }
 
@@ -67,6 +85,7 @@ class View {
     this.menuBtn = document.querySelector("#menu-btn");
     this.menuBtn.addEventListener("click", this.openOffCanvasMenu);
     window.addEventListener("resize", this.changeAriaAttr);
+    document.addEventListener("books_processed", e => this.display(e));
     Utils.getCurrentPage();
     this.changeAriaAttr();
   }
@@ -94,9 +113,59 @@ class View {
     }
   }
 
-  addToDashboard() {}
+  display(e) {
+    const path = window.location.pathname;
 
-  display() {}
+    switch(path){
+      case "/index.html":
+        this.addInDashboard(e.allBooks, e.booksToRead, e.booksCurrentlyReading,e.booksRead);
+        break;
+      case "/to-read.html":
+        this.addInToRead(e.booksToRead);
+        break;
+      case "/reading.html":
+        this.addInReading(e.booksCurrentlyReading);
+        break;
+      case "/read.html":
+        this.addInRead(e.booksRead);
+        break;
+      case "/single.html":
+        this.addInSingle();
+        break;
+      case "/library.html":
+        this.addInLibrary(e.allBooks);
+        break;
+      default:
+        break;
+    }
+
+  }
+
+  // load content into dashboard
+  addInDashboard(allBooks, booksToRead, booksReading, booksRead) {
+    const stats = document.querySelector("#stats");
+    let rowHTML = `<div class="row"></div>`;
+    stats.insertAdjacentHTML("beforeend", rowHTML);
+    const row = stats.querySelector(".row");
+
+    // Create HTML template
+    const totalBooksHTML = Utils.buildStats(`${allBooks.length}`, "Total Books");
+    const booksToReadHTML = Utils.buildStats(`${booksToRead.length}`, "To Read");
+    const booksReadingHTML = Utils.buildStats(`${booksReading.length}`, "Currently Reading");
+    const booksReadHTML = Utils.buildStats(`${booksRead}`, "Complete");
+
+    console.log(totalBooksHTML);
+
+    // Add to the DOM
+    row.insertAdjacentHTML("afterbegin", totalBooksHTML);
+
+  }
+
+  addInToRead(arr){}
+  addInReading(arr){}
+  addInRead(){}
+  addInSingle(){}
+  addInLibrary(arr){}
 
   // open off canvas menu
   openOffCanvasMenu() {
