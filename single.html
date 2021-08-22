@@ -12,49 +12,54 @@
   <body>
       <!--  wrapper-->
     <div class="container-fluid p-0">
-        <div class="row d-flex">
+        <div class="row d-flex m-0">
             <!-- header container -->
-            <header class="col-md-3 col-xl-2 bg-white sticky-top p-5" id="header">
-                <!-- navbar -->
-                <nav class="navbar">
-                    <div class="container-xl">
-                        <!-- offcanvas -->
-                        <button class="menu-btn btn-secondary" aria-hidden="false"><i class="bi bi-list"></i>Open offcanvas navigation</button>
-                        <div class="overlay" aria-hidden=false>Offcanvas overlay</div>
-                        <div class="offcanvas" aria-hidden="false">
-                            <nav class="offcanvas__nav mt-5">
-                                <ul>
-                                    <li><a href="/index.html" class="nav-link"></a><i class="bi bi-house"></i> Home</li>
-                                    <li><a href="/to-read.html" class="nav-link"><i class="bi bi-bookmark"></i> To Read</a></li>
-                                    <li><a href="/reading.html" class="nav-link"><i class="bi bi-eye"></i> Reading</a></li>
-                                    <li><a href="/read.html" class="nav-link"><i class="bi bi-check2"></i> Read</a></li>
-                                    <li><a href="/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
-                                </ul>
-                            </nav>
-                            <button class="close-btn btn-secondary"><i class="bi bi-x-lg"></i>Close offcanvas menu</button>
-                        </div><!-- end of offcanvas -->
+            <div class="col-md-3 col-xl-2 bg-white sticky-top py-4" id="header">
+                <header>
+                    <!-- navbar -->
+                    <nav class="navbar">
+                        <div class="container-xl">
+                            <!-- offcanvas -->
+                            <button id="menu-btn" class="btn-secondary position-absolute" aria-hidden="false"><i class="bi bi-list"></i>Open offcanvas navigation</button>
+                            <div class="overlay fixed-top bg-dark vh-100 vw-100" aria-hidden=false>Offcanvas overlay</div>
+                            <div class="offcanvas fixed-top bg-white vh-100 overflow-auto" aria-hidden="false">
+                                <nav class="offcanvas__nav mt-5 navbar-nav p-2">
+                                    <ul class="d-flex flex-column justify-content-around position-relative">
+                                        <li class="w-100"><a href="/index.html" class="nav-link text-secondary"></a><i class="bi bi-house"></i> Home</li>
+                                        <li class="w-100"><a href="/to-read.html" class="nav-link text-secondary"><i class="bi bi-bookmark"></i> To Read</a></li>
+                                        <li class="w-100"><a href="/reading.html" class="nav-link text-secondary"><i class="bi bi-eye"></i> Reading</a></li>
+                                        <li class="w-100"><a href="/read.html" class="nav-link text-secondary"><i class="bi bi-check2"></i> Read</a></li>
+                                        <li class="w-100"><a href="/contact.html" class="nav-link text-secondary"><i class="bi bi-envelope"></i> Contact</a></li>
+                                    </ul>
+                                </nav>
+                                <button class="close-btn btn-secondary position-absolute"><i class="bi bi-x-lg"></i>Close offcanvas menu</button>
+                            </div><!-- end of offcanvas -->
 
-                        <!-- logo -->
-                        <a href="/index.html" class="navbar-brand ms-2 mt-5"><img src="images/logo.webp" alt="BookStow site logo"></a>
+                            <!-- logo -->
+                            <a href="/index.html" class="navbar-brand ms-2"><img src="images/logo.webp" alt="BookStow site logo"></a>
 
-                        <!-- nav links used for desktop -->
-                        <ul class="navbar-nav mt-4">
-                            <li><a href="/index.html" class="nav-link"></a><i class="bi bi-house"></i> Home</li>
-                            <li><a href="/to-read.html" class="nav-link"><i class="bi bi-bookmark"></i> To Read</a></li>
-                            <li><a href="/reading.html" class="nav-link"><i class="bi bi-eye"></i> Reading</a></li>
-                            <li><a href="/read.html" class="nav-link"><i class="bi bi-check2"></i> Read</a></li>
-                            <li><a href="/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </header><!-- end of header container -->
+                            <!-- nav links used for desktop -->
+                            <ul class="navbar-nav w-100 mt-4">
+                                <li class="nav-item"><a href="/index.html" class="nav-link text-secondary"><i class="bi bi-house"></i> Home</a></li>
+                                <li class="nav-item"><a href="/to-read.html" class="nav-link text-secondary"><i class="bi bi-bookmark"></i> To Read</a></li>
+                                <li class="nav-item"><a href="/reading.html" class="nav-link text-secondary"><i class="bi bi-eye"></i> Reading</a></li>
+                                <li class="nav-item"><a href="/read.html" class="nav-link text-secondary"><i class="bi bi-check2"></i> Read</a></li>
+                                <li class="nav-item"><a href="/contact.html" class="nav-link text-secondary"><i class="bi bi-envelope"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+            </div><!-- end of header container -->
+
+
+
+            <!-- main content section -->
+            <main class="col-md-8 col-xl-9 p-5">
+                
+                <!-- footer -->
+                <footer class="text-center position-absolute w-100 py-5">BookStow © Copyright 2021. All rights reserved.</footer>
+            </main>
         </div>
-
-        <!-- main content section -->
-        <main class="col-md-8 col-xl-9 p-5">
-            <section class="container mt-5" id="single-book"></section>
-            <footer class="text-center">BookStow © Copyright 2021. All rights reserved.</footer>
-        </main>
     </div>
 
     <!-- contact button -->

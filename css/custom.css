@@ -9,7 +9,9 @@ body,
 html {
   margin: 0;
   padding: 0;
-  background: #ffffff;
+  background: #f8f8f7;
+  height: 100%;
+  min-height: 100%;
 }
 
 /* TYPOGRAPHY
@@ -93,6 +95,19 @@ html {
 .close-btn {
   right: 30px;
   top: 20px;
+}
+
+/* sections */
+section {
+  margin-bottom: 20rem;
+}
+
+
+/* main */
+main {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
 }
 
 /* footer */
@@ -196,6 +211,10 @@ footer {
 /* medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   /* header */
+  #header {
+    height: 100vh;
+  }
+
   .navbar-nav {
     display: initial;
   }
@@ -215,6 +234,11 @@ footer {
   }
 
   /* layout */
+  .py-4 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
   .p-5 {
     padding: 3rem !important;
   }
