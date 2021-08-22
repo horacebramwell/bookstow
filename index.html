@@ -12,59 +12,62 @@
   <body>
       <!--  wrapper-->
     <div class="container-fluid p-0">
-        <div class="row d-flex">
+        <div class="row d-flex m-0">
             <!-- header container -->
-            <header class="col-md-3 col-xl-2 bg-white sticky-top p-5" id="header">
-                <!-- navbar -->
-                <nav class="navbar">
-                    <div class="container-xl">
-                        <!-- offcanvas -->
-                        <button class="menu-btn btn-secondary" aria-hidden="false"><i class="bi bi-list"></i>Open offcanvas navigation</button>
-                        <div class="overlay" aria-hidden=false>Offcanvas overlay</div>
-                        <div class="offcanvas" aria-hidden="false">
-                            <nav class="offcanvas__nav mt-5">
-                                <ul>
-                                    <li><a href="/index.html" class="nav-link"></a><i class="bi bi-house"></i> Home</li>
-                                    <li><a href="/to-read.html" class="nav-link"><i class="bi bi-bookmark"></i> To Read</a></li>
-                                    <li><a href="/reading.html" class="nav-link"><i class="bi bi-eye"></i> Reading</a></li>
-                                    <li><a href="/read.html" class="nav-link"><i class="bi bi-check2"></i> Read</a></li>
-                                    <li><a href="/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
-                                </ul>
-                            </nav>
-                            <button class="close-btn btn-secondary"><i class="bi bi-x-lg"></i>Close offcanvas menu</button>
-                        </div><!-- end of offcanvas -->
+            <div class="col-md-3 col-xl-2 bg-white sticky-top p-5" id="header">
+                <header>
+                    <!-- navbar -->
+                    <nav class="navbar">
+                        <div class="container-xl">
+                            <!-- offcanvas -->
+                            <button class="menu-btn btn-secondary" aria-hidden="false"><i class="bi bi-list"></i>Open offcanvas navigation</button>
+                            <div class="overlay fixed-top bg-dark vh-100 vw-100" aria-hidden=false>Offcanvas overlay</div>
+                            <div class="offcanvas fixed-top bg-white vh-100 overflow-auto p-3" aria-hidden="false">
+                                <nav class="offcanvas__nav mt-5 navbar-nav">
+                                    <a href="/index.html" class="navbar-brand ms-2 mt-5"><img src="images/logo.webp" alt="BookStow site logo"></a>
+                                    <ul class="d-flex flex-column justify-content-around position-relative">
+                                        <li class="w-100"><a href="/index.html" class="nav-link"></a><i class="bi bi-house"></i> Home</li>
+                                        <li class="w-100"><a href="/to-read.html" class="nav-link"><i class="bi bi-bookmark"></i> To Read</a></li>
+                                        <li class="w-100"><a href="/reading.html" class="nav-link"><i class="bi bi-eye"></i> Reading</a></li>
+                                        <li class="w-100"><a href="/read.html" class="nav-link"><i class="bi bi-check2"></i> Read</a></li>
+                                        <li class="w-100"><a href="/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
+                                    </ul>
+                                </nav>
+                                <button class="close-btn btn-secondary"><i class="bi bi-x-lg"></i>Close offcanvas menu</button>
+                            </div><!-- end of offcanvas -->
 
-                        <!-- logo -->
-                        <a href="/index.html" class="navbar-brand ms-2 mt-5"><img src="images/logo.webp" alt="BookStow site logo"></a>
+                            <!-- logo -->
+                            <a href="/index.html" class="navbar-brand ms-2 mt-5"><img src="images/logo.webp" alt="BookStow site logo"></a>
 
-                        <!-- nav links used for desktop -->
-                        <ul class="navbar-nav mt-4">
-                            <li><a href="/index.html" class="nav-link"></a><i class="bi bi-house"></i> Home</li>
-                            <li><a href="/to-read.html" class="nav-link"><i class="bi bi-bookmark"></i> To Read</a></li>
-                            <li><a href="/reading.html" class="nav-link"><i class="bi bi-eye"></i> Reading</a></li>
-                            <li><a href="/read.html" class="nav-link"><i class="bi bi-check2"></i> Read</a></li>
-                            <li><a href="/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </header><!-- end of header container -->
+                            <!-- nav links used for desktop -->
+                            <ul class="navbar-nav w-100 mt-4" aria-hidden="false">
+                                <li class="nav-item"><a href="/index.html" class="nav-link"></a><i class="bi bi-house"></i> Home</li>
+                                <li class="nav-item"><a href="/to-read.html" class="nav-link"><i class="bi bi-bookmark"></i> To Read</a></li>
+                                <li class="nav-item"><a href="/reading.html" class="nav-link"><i class="bi bi-eye"></i> Reading</a></li>
+                                <li class="nav-item"><a href="/read.html" class="nav-link"><i class="bi bi-check2"></i> Read</a></li>
+                                <li class="nav-item"><a href="/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+            </div><!-- end of header container -->
         </div>
 
         <!-- main content section -->
         <main class="col-md-8 col-xl-9 p-5">
             <!-- page header -->
-            <header id="page-header" class="col-lg-9 col-md-7 p-0">
-                <h1>Dashboard</h1>
+            <header id="page-header" class="col-lg-9 col-md-7 p-0 text-sm-center text-md-left">
+                <h1 class="text-primary">Dashboard</h1>
             </header>
             <!-- stats section -->
             <section id="stats" class="mt-5">
-                <h2>Stats</h2>
+                <h2 class="text-primary">Stats</h2>
             </section>
             <!-- recently added section -->
             <section id="recently-added" class="mt-5">
-                <div class="row">
-                    <header class="col-lg-9 col-md-7 section-header">
-                        <h2>Recently Added</h2>
+                <div class="row m-0">
+                    <header class="col-lg-9 col-md-7 section-header text-sm-center text-md-left">
+                        <h2 class="text-primary">Recently Added</h2>
                     </header>
                     <div class="col-lg-3 col-md-5 p-0 d-flex align-items-center add-btn-container">
                         <button type=button class="btn-link">See All <i class="bi bi-arrow-right"></i></button>
