@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css">
+    <title>Read</title>
+  </head>
+  <body>
+      <!--  wrapper-->
+    <div class="container-fluid p-0">
+        <div class="row d-flex">
+            <!-- header container -->
+            <header class="col-md-3 col-xl-2 bg-white sticky-top p-5" id="header">
+                <!-- navbar -->
+                <nav class="navbar">
+                    <div class="container-xl">
+                        <!-- offcanvas -->
+                        <button class="menu-btn btn-secondary" aria-hidden="false"><i class="bi bi-list"></i>Open offcanvas navigation</button>
+                        <div class="overlay" aria-hidden=false>Offcanvas overlay</div>
+                        <div class="offcanvas" aria-hidden="false">
+                            <nav class="offcanvas__nav mt-5">
+                                <ul>
+                                    <li><a href="/index.html" class="nav-link"></a><i class="bi bi-house"></i> Home</li>
+                                    <li><a href="/to-read.html" class="nav-link"><i class="bi bi-bookmark"></i> To Read</a></li>
+                                    <li><a href="/reading.html" class="nav-link"><i class="bi bi-eye"></i> Reading</a></li>
+                                    <li><a href="/read.html" class="nav-link"><i class="bi bi-check2"></i> Read</a></li>
+                                    <li><a href="/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
+                                </ul>
+                            </nav>
+                            <button class="close-btn btn-secondary"><i class="bi bi-x-lg"></i>Close offcanvas menu</button>
+                        </div><!-- end of offcanvas -->
+
+                        <!-- logo -->
+                        <a href="/index.html" class="navbar-brand ms-2 mt-5"><img src="images/logo.webp" alt="BookStow site logo"></a>
+
+                        <!-- nav links used for desktop -->
+                        <ul class="navbar-nav mt-4">
+                            <li><a href="/index.html" class="nav-link"></a><i class="bi bi-house"></i> Home</li>
+                            <li><a href="/to-read.html" class="nav-link"><i class="bi bi-bookmark"></i> To Read</a></li>
+                            <li><a href="/reading.html" class="nav-link"><i class="bi bi-eye"></i> Reading</a></li>
+                            <li><a href="/read.html" class="nav-link"><i class="bi bi-check2"></i> Read</a></li>
+                            <li><a href="/contact.html" class="nav-link"><i class="bi bi-envelope"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </header><!-- end of header container -->
+        </div>
+
+        <!-- main content section -->
+        <main class="col-md-8 col-xl-9 p-5">
+            <div class="row mb-5">
+                <div class="col-lg-9 col-md-7 page-header">
+                    <header>
+                        <h2>Read</h2>
+                    </header>
+                </div>
+                <div class="col-lg-3 col-md-5 p-0 d-flex align-items-center btn-col">
+                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#book-modal"><i class="bi bi-plus-lg"></i> Add Book</button>
+                </div>
+
+                <!-- modal -->
+                <div class="modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Add Book</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="book-title">Title</label>
+                                        <input type="text" class="form-control" id="book-title" placeholder="Enter Book title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="author-name">Author</label>
+                                        <input type="text" class="form-control" id="author-name" placeholder="Enter author name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="book-cover">Book Cover</label>
+                                        <input type="file" id="book-cover" class="form-control" name="book-cover" accept="image/png, image/jpeg" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="book-descrip">Description</label>
+                                        <textarea name="book-descrip" id="book-descrip" cols="30" rows="5" class="form-control" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"> Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of modal -->
+            </div>
+            <!-- section -->
+            <section class="mt-5" id="read-books"></section>
+            <!-- footer -->
+            <footer class="text-center">BookStow © Copyright 2021. All rights reserved.</footer>
+        </main>
+    </div>
+
+    <!-- contact button -->
+    <button id="contact-btn">Contact</button>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="js/books.js" defer></script>
+    <script src="js/book.js" defer></script>
+    <script src="js/utils.js" defer></script>
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
