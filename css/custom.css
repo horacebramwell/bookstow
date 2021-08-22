@@ -99,7 +99,7 @@ html {
 }
 
 /* sections */
-section {
+section:nth-of-type(2) {
   margin-bottom: 20rem;
 }
 
@@ -119,6 +119,43 @@ footer {
 /* padding */
 .p-5 {
   padding: 1rem !important;
+}
+
+
+/* Books */
+.book-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  padding: 5%;
+  height: 100%;
+}
+
+#book-card {
+  height: 100%;
+}
+
+#single-book-cover {
+  max-width: 20rem;
+  width: 75%;
+}
+
+.book {
+  transition: 0.5s;
+}
+
+.book img {
+  transition: 1s;
+}
+
+.book:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.book:hover img {
+  transform: scale(1.03);
 }
 
 /* COMPONENTS

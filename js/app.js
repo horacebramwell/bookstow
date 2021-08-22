@@ -85,9 +85,10 @@ class View {
     this.menuBtn = document.querySelector("#menu-btn");
     this.menuBtn.addEventListener("click", this.openOffCanvasMenu);
     window.addEventListener("resize", this.changeAriaAttr);
-    document.addEventListener("books_processed", e => this.display(e));
+    document.addEventListener("books_processed", (e) => this.display(e));
     Utils.getCurrentPage();
     this.changeAriaAttr();
+    this.books;
   }
 
   // change attributes
@@ -115,10 +116,16 @@ class View {
 
   display(e) {
     const path = window.location.pathname;
+    this.books = e.allBooks;
 
-    switch(path){
+    switch (path) {
       case "/index.html":
-        this.addInDashboard(e.allBooks, e.booksToRead, e.booksCurrentlyReading,e.booksRead);
+        this.addInDashboard(
+          e.allBooks,
+          e.booksToRead,
+          e.booksCurrentlyReading,
+          e.booksRead
+        );
         break;
       case "/to-read.html":
         this.addInToRead(e.booksToRead);
@@ -130,7 +137,7 @@ class View {
         this.addInRead(e.booksRead);
         break;
       case "/single.html":
-        this.addInSingle();
+        this.addInSingle(this.currentBook);
         break;
       case "/library.html":
         this.addInLibrary(e.allBooks);
@@ -138,7 +145,6 @@ class View {
       default:
         break;
     }
-
   }
 
   // load content into dashboard
@@ -149,23 +155,194 @@ class View {
     const row = stats.querySelector(".row");
 
     // Create HTML template
-    const totalBooksHTML = Utils.buildStats(`${allBooks.length}`, "Total Books");
-    const booksToReadHTML = Utils.buildStats(`${booksToRead.length}`, "To Read");
-    const booksReadingHTML = Utils.buildStats(`${booksReading.length}`, "Currently Reading");
-    const booksReadHTML = Utils.buildStats(`${booksRead}`, "Complete");
-
-    console.log(totalBooksHTML);
+    const totalBooksHTML = Utils.buildStats(
+      `${allBooks.length}`,
+      "Total Books"
+    );
+    const booksToReadHTML = Utils.buildStats(
+      `${booksToRead.length}`,
+      "To Read"
+    );
+    const booksReadingHTML = Utils.buildStats(
+      `${booksReading.length}`,
+      "Currently Reading"
+    );
+    const booksReadHTML = Utils.buildStats(`${booksRead.length}`, "Complete");
 
     // Add to the DOM
     row.insertAdjacentHTML("afterbegin", totalBooksHTML);
+    row.insertAdjacentHTML("beforeend", booksToReadHTML);
+    row.insertAdjacentHTML("beforeend", booksReadingHTML);
+    row.insertAdjacentHTML("beforeend", booksReadHTML);
 
+    const recentlyAddedSection = document.querySelector("#recently-added");
+    const recentlyAddedRowHTML = `<div class="row mt-5" id="recently-added-books"> </div>`;
+    recentlyAddedSection.insertAdjacentHTML("beforeend", recentlyAddedRowHTML);
+    const recentlyAddedBooks = allBooks.slice(Math.max(allBooks.length - 8, 0));
+
+    recentlyAddedBooks.forEach((book) => {
+      const bookHTML = Utils.recentlyAddedTemplate(
+        book.cover,
+        book.title,
+        book.author
+      );
+      document
+        .querySelector("#recently-added-books")
+        .insertAdjacentHTML("beforeend", bookHTML);
+    });
   }
 
-  addInToRead(arr){}
-  addInReading(arr){}
-  addInRead(){}
-  addInSingle(){}
-  addInLibrary(arr){}
+  // to read page
+  addInToRead(arr) {
+    Utils.addBooksToPage(arr, `#books-to-read`, "to read");
+    Utils.getClickedBook();
+    document.addEventListener("book_clicked", (e) => this.checkClickedBook(e));
+
+    // add form
+    // check clicked book
+  }
+
+  // currently reading page
+  addInReading(arr) {
+    Utils.addBooksToPage(arr, `#currently-reading`, "currently reading");
+    Utils.getClickedBook();
+    document.addEventListener("book_clicked", (e) => this.checkClickedBook(e));
+  }
+
+  // read page
+  addInRead(arr) {
+    Utils.addBooksToPage(arr, `#books-read`, "read");
+    Utils.getClickedBook();
+    document.addEventListener("book_clicked", (e) => this.checkClickedBook(e));
+  }
+
+  checkClickedBook(e) {
+    const book = e.book;
+    const bookTitle = e.book.querySelector("h5").innerHTML;
+    let clickedBook = localStorage.getItem(bookTitle);
+    clickedBook = JSON.parse(clickedBook);
+    localStorage.setItem("activebook", JSON.stringify(clickedBook));
+    window.location = "/single.html";
+  }
+
+  addInSingle() {
+    let currentBook = localStorage.getItem("activebook");
+    currentBook = JSON.parse(currentBook);
+
+    const HTML = Utils.buildSinglePageTemplate(currentBook);
+    const path = window.location.pathname;
+
+    if (path === "/single.html") {
+      const section = document.querySelector("#single-book");
+      section.insertAdjacentHTML("afterbegin", HTML);
+    }
+
+    this.setBookStatus(currentBook);
+  }
+
+  // check book status and set button colors
+  setBookStatus(book) {
+    // Buttons
+    const bookmarkBtn = document.querySelector("#bookmark-btn");
+    const readingBtn = document.querySelector("#reading-btn");
+    const completeBtn = document.querySelector("#completed-btn");
+    const deleteBtn = document.querySelector("#delete-btn");
+    const buttons = [bookmarkBtn, readingBtn, completeBtn, deleteBtn];
+    const books = this.books;
+    const bookmarked = "bookmarked";
+    const read = "read";
+    const currentlyReading = "reading";
+
+    // Check status
+    switch (book.status) {
+      case "bookmarked":
+        bookmarkBtn.classList.add("active");
+        break;
+      case "read":
+        completeBtn.classList.add("active");
+        break;
+      case "reading":
+        readingBtn.classList.add("active");
+        break;
+      default:
+    }
+
+    // book mark button
+    bookmarkBtn.addEventListener("click", () => {
+      if (book.status !== bookmarked) {
+        book.status = bookmarked;
+        localStorage.setItem(`${book.title}`, JSON.stringify(book));
+        const loadedBook = localStorage.getItem(`${book.title}`);
+        const updatedBook = JSON.parse(loadedBook);
+        const index = books.findIndex((el) => el.title === book.title);
+        this.books[index] = updatedBook;
+      }
+
+      buttons.forEach((btn) => {
+        if (btn.id !== bookmarkBtn.id) {
+          btn.classList.remove("active");
+          window.location = "/to-read.html";
+        }
+        if (btn.id === bookmarkBtn.id) {
+          btn.classList.add("active");
+        }
+      });
+    });
+
+    // currently reading
+    readingBtn.addEventListener("click", () => {
+      if (book.status !== currentlyReading) {
+        book.status = currentlyReading;
+        localStorage.setItem(`${book.title}`, JSON.stringify(book));
+        const loadedBook = localStorage.getItem(`${book.title}`);
+        const updatedBook = JSON.parse(loadedBook);
+        const index = books.findIndex((el) => el.title === book.title);
+        this.books[index] = updatedBook;
+      }
+
+      buttons.forEach((btn) => {
+        if (btn.id !== readingBtn.id) {
+          btn.classList.remove("active");
+          window.location = "/reading.html";
+        }
+        if (btn.id === readingBtn.id) {
+          btn.classList.add("active");
+        }
+      });
+    });
+
+    // read
+    completeBtn.addEventListener("click", () => {
+      if (book.status !== read) {
+        book.status = read;
+        localStorage.setItem(`${book.title}`, JSON.stringify(book));
+        const loadedBook = localStorage.getItem(`${book.title}`);
+        const updatedBook = JSON.parse(loadedBook);
+        const index = books.findIndex((el) => el.title === book.title);
+        this.books[index] = updatedBook;
+      }
+
+      buttons.forEach((btn) => {
+        if (btn.id !== completeBtn.id) {
+          btn.classList.remove("active");
+          window.location = "/read.html";
+        }
+        if (btn.id === completeBtn.id) {
+          btn.classList.add("active");
+        }
+      });
+    });
+
+    // delete
+    deleteBtn.addEventListener("click", () => {
+      localStorage.removeItem(`${book.title}`);
+      if (document.referrer) {
+        window.location = document.referrer;
+      }
+    });
+  }
+
+  addInLibrary(arr) {}
 
   // open off canvas menu
   openOffCanvasMenu() {
