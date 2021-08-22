@@ -136,9 +136,81 @@ footer {
   right: 0px;
 }
 
+.btn-link {
+  color: #0c5063;
+}
+
+.btn-primary {
+  background: #0c5063;
+  border-color: #0c5063;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background: #083846;
+  border-color: #083846;
+}
+
+btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background: #083846;
+  border-color: #083846;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show > .btn-secondary.dropdown-toggle {
+  background-color: transparent !important;
+  color: #212121;
+  border: none;
+  font-size: 0;
+}
+
+#bookmark-btn,
+#reading-btn,
+#completed-btn,
+#delete-btn {
+  width: 80%;
+  height: 40px;
+  font-size: 0;
+  border: 1px solid #ccc;
+  background: #f3f4f4;
+  background-size: 35%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#bookmark-btn:hover,
+#reading-btn:hover,
+#completed-btn:hover,
+#delete-btn:hover {
+  background-color: rgb(209, 209, 209);
+}
+
+.active {
+  background-color: #0c5063 !important;
+  color: #fff !important;
+}
+
+
+.modal {
+  animation: cardSlideIn 0.5s ease-in-out;
+}
+
+/* form */
+input[type="file"] {
+  line-height: 1.2 !important;
+}
+
 /* icons */
 .bi {
-  font-size: 1.5rem;
+  font-size: initial;
 }
 
 /* UTILS
