@@ -14,12 +14,12 @@ class Utils {
   }
 
   // add books to page
-  static addBooksToPage(arr, sectionID, listName) {
+  static addBooksToPage(arr, sectionID, msg) {
     const section = document.querySelector(sectionID);
     const headerSection = document
       .querySelector(".page-header")
       .querySelector("header");
-    const subtitleHTML = `<h6 class="text-secondary">You have ${arr.length} books on your ${listName} list.</h6>`;
+    const subtitleHTML = `<h6 class="text-secondary">You have ${arr.length} books ${msg}</h6>`;
     const rowHTML = `<div class="row"></div>`;
     section.insertAdjacentHTML("afterbegin", rowHTML);
     headerSection.insertAdjacentHTML("beforeend", subtitleHTML);
@@ -118,6 +118,57 @@ class Utils {
         evt.book = book;
         document.dispatchEvent(evt);
       });
+    });
+  }
+
+
+
+  // formSubmit
+  static formSubmitAction(arr, path) {
+    const title = document.querySelector("#book-title");
+    const author = document.querySelector("#author-name");
+    const cover = document.querySelector("#book-cover");
+    const description = document.querySelector("#book-descrip");
+    const form = document.querySelector("form");
+    let status = "";
+
+    // Check path
+    switch (path) {
+      case "/to-read.html":
+        status = "bookmarked";
+        break;
+      case "/read.html":
+        status = "read";
+        break;
+      case "/reading.html":
+        status = "reading";
+        break;
+      default:
+      // code here
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    const submitBtn =  document.querySelector('#submit-btn');
+       
+    submitBtn.addEventListener("click", () => {
+      let book = new Book();
+      const reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        book.title = title.value;
+        book.author = author.value;
+        book.cover = reader.result;
+        book.summary = description.value;
+        book.id = arr.length + 1;
+        book.status = status;
+        localStorage.setItem(book.title, JSON.stringify(book));
+      });
+
+      reader.readAsDataURL(cover.files[0]);
+      window.location.href = window.location.origin + path;
     });
   }
 

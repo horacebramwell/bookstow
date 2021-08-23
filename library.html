@@ -52,20 +52,66 @@
             </div><!-- end of header container -->
 
 
-
             <!-- main content section -->
             <main class="col-md-8 col-xl-9 p-5">
-                
+                <div class="row mb-5">
+                    <div class="col-lg-9 col-md-7 page-header">
+                        <header>
+                            <h2 class="text-primary">
+                                All Books
+                            </h2>
+                        </header>
+                    </div> 
+                    <div class="col-lg-3 col-md-5 p-0 d-flex align-items-center btn-col">
+                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#book-modal">
+                            <i class="bi bi-plus-lg"></i> Add Book
+                        </button>
+                    </div>
 
-
+                    <!-- modal -->
+                    <div class="modal" id="book-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add Book</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="book-title">Title</label>
+                                            <input type="text" class="form-control" id="book-title" placeholder="Enter Book title" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="author-name">Author</label>
+                                            <input type="text" class="form-control" id="author-name" placeholder="Enter author name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="book-cover">Book Cover</label>
+                                            <input type="file" id="book-cover" class="form-control" name="book-cover" accept="image/png, image/jpeg" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="book-descrip">Description</label>
+                                            <textarea name="book-descrip" id="book-descrip" cols="30" rows="5" class="form-control" required></textarea>
+                                        </div>
+                                        <button id="submit-btn" type="submit" class="btn btn-primary"> Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of modal -->
+                </div>
+                <!-- section -->
+                <section class="mt-5" id="all-books"></section>
                 <!-- footer -->
-                <footer class="text-center position-absolute w-100 py-5">BookStow © Copyright 2021. All rights reserved.</footer>
+                <footer class="text-center">BookStow © Copyright 2021. All rights reserved.</footer>
             </main>
         </div>
     </div>
 
     <!-- contact button -->
-    <button id="contact-btn">Contact</button>
+    <button id="contact-btn"><i class="bi bi-envelope"></i>Contact</button>
 
     <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

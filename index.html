@@ -11,7 +11,7 @@
   </head>
   <body>
       <!--  wrapper-->
-    <div class="container-fluid p-0 m-0">
+    <div class="container-fluid p-0 m-0" id="wrapper">
         <div class="row d-flex m-0">
             <!-- header container -->
             <div class="col-md-3 col-xl-2 bg-white sticky-top py-4" id="header">
@@ -56,7 +56,7 @@
             <!-- main content section -->
             <main class="col-md-8 col-xl-9 p-5">
                 <!-- page header -->
-                <header id="page-header" class="col-lg-9 col-md-7 p-0 text-sm-center text-md-left">
+                <header class="col-lg-9 col-md-7 p-0 page-header">
                     <h1 class="text-primary">Dashboard</h1>
                 </header>
                 <!-- stats section -->
@@ -66,21 +66,21 @@
                 <!-- recently added section -->
                 <section id="recently-added" class="mt-5">
                     <div class="row m-0">
-                        <header class="col-lg-9 col-md-7 section-header text-sm-center text-md-left">
+                        <header class="col-lg-9 col-md-7 section-header">
                             <h2 class="text-primary">Recently Added</h2>
                         </header>
                         <div class="col-lg-3 col-md-5 p-0 d-flex align-items-center add-btn-container">
-                            <button type=button class="btn btn-link">See All <i class="bi bi-arrow-right"></i></button>
+                            <button id="see-all-btn" type=button class="btn btn-link">See All <i class="bi bi-arrow-right"></i></button>
                         </div>
                     </div>
                 </section>
-                <footer class="text-center position-absolute w-100 py-5">BookStow © Copyright 2021. All rights reserved.</footer>
+                <footer class="text-center">BookStow © Copyright 2021. All rights reserved.</footer>
             </main>
         </div>
     </div>
 
     <!-- contact button -->
-    <button id="contact-btn">Contact</button>
+    <button id="contact-btn"><i class="bi bi-envelope"></i>Contact</button>
 
     <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -2,6 +2,8 @@ class App {
   constructor() {
     console.log("app has started . . .");
     this.controller = new Controller();
+    Utils.getCurrentPage();
+    document.querySelector('#contact-btn').addEventListener('click', this.goToContact);
   }
 
   static getInstance() {
@@ -11,6 +13,10 @@ class App {
     } else {
       throw "App is currently running.";
     }
+  }
+
+  goToContact(){
+    window.location = "/contact.html";
   }
 }
 
@@ -24,15 +30,20 @@ class Controller {
   }
 
   loadBooks() {
-    // check local storage keys
-    if (window.localStorage.length === 0) {
-      books.forEach((book) => {
-        localStorage.setItem(`${book.title}`, JSON.stringify(book));
-      });
-    }
 
     // add books to array
     this.books = Utils.loadFromStorage();
+
+    // check local storage keys
+    if (this.books.length === 0) {
+      books.forEach((book) => {
+        localStorage.setItem(`${book.title}`, JSON.stringify(book));
+      });
+
+      this.books = Utils.loadFromStorage();
+    }
+
+    
 
     // custom event
     const booksLoadedEvent = new Event("books_loaded");
@@ -89,6 +100,7 @@ class View {
     Utils.getCurrentPage();
     this.changeAriaAttr();
     this.books;
+    this.path;
   }
 
   // change attributes
@@ -114,11 +126,13 @@ class View {
     }
   }
 
+
+
   display(e) {
-    const path = window.location.pathname;
+    this.path = window.location.pathname;
     this.books = e.allBooks;
 
-    switch (path) {
+    switch (this.path) {
       case "/index.html":
         this.addInDashboard(
           e.allBooks,
@@ -149,6 +163,7 @@ class View {
 
   // load content into dashboard
   addInDashboard(allBooks, booksToRead, booksReading, booksRead) {
+
     const stats = document.querySelector("#stats");
     let rowHTML = `<div class="row"></div>`;
     stats.insertAdjacentHTML("beforeend", rowHTML);
@@ -186,25 +201,38 @@ class View {
         book.title,
         book.author
       );
-      document
-        .querySelector("#recently-added-books")
-        .insertAdjacentHTML("beforeend", bookHTML);
+      document.querySelector("#recently-added-books").insertAdjacentHTML("beforeend", bookHTML);
     });
+
+    const books = document.querySelectorAll(".book");
+    books.forEach((book) => {
+      book.addEventListener("click", () => {
+        const bookTitle = book.querySelector(".card-title").innerHTML;
+        let clickedBook = localStorage.getItem(bookTitle);
+        clickedBook = JSON.parse(clickedBook);
+        localStorage.setItem("activebook", JSON.stringify(clickedBook));
+        window.location = "/single.html";
+      })
+    })
+
+    document.querySelector('#see-all-btn').addEventListener("click", () =>{
+      window.location.href = window.origin + `/library.html`;
+    });
+
   }
 
   // to read page
   addInToRead(arr) {
     Utils.addBooksToPage(arr, `#books-to-read`, "to read");
+    Utils.formSubmitAction(this.books, this.path);
     Utils.getClickedBook();
     document.addEventListener("book_clicked", (e) => this.checkClickedBook(e));
-
-    // add form
-    // check clicked book
   }
 
   // currently reading page
   addInReading(arr) {
     Utils.addBooksToPage(arr, `#currently-reading`, "currently reading");
+    Utils.formSubmitAction(this.books, this.path);
     Utils.getClickedBook();
     document.addEventListener("book_clicked", (e) => this.checkClickedBook(e));
   }
@@ -213,12 +241,13 @@ class View {
   addInRead(arr) {
     Utils.addBooksToPage(arr, `#books-read`, "read");
     Utils.getClickedBook();
+    Utils.formSubmitAction(this.books, this.path);
     document.addEventListener("book_clicked", (e) => this.checkClickedBook(e));
   }
 
   checkClickedBook(e) {
     const book = e.book;
-    const bookTitle = e.book.querySelector("h5").innerHTML;
+    const bookTitle = e.book.querySelector(".card-title").innerHTML;
     let clickedBook = localStorage.getItem(bookTitle);
     clickedBook = JSON.parse(clickedBook);
     localStorage.setItem("activebook", JSON.stringify(clickedBook));
@@ -342,7 +371,13 @@ class View {
     });
   }
 
-  addInLibrary(arr) {}
+  addInLibrary(arr) {
+    Utils.addBooksToPage(arr, `#all-books`, "in your library");
+    Utils.getClickedBook();
+    Utils.formSubmitAction(this.books, this.path);
+    document.addEventListener("book_clicked", (e) => this.checkClickedBook(e));
+
+  }
 
   // open off canvas menu
   openOffCanvasMenu() {

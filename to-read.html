@@ -56,7 +56,7 @@
             <!-- main content section -->
             <main class="col-md-8 col-xl-9 p-5">
                 <div class="row mb-5">
-                    <div class="col-lg-9 col-md-7 page-header text-sm-center text-md-left">
+                    <div class="col-lg-9 col-md-7 page-header">
                         <header>
                             <h2 class="text-primary">
                                 To Read
@@ -78,7 +78,7 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
+                                    <form action="/to-read.html">
                                         <div class="form-group">
                                             <label for="book-title">Title</label>
                                             <input type="text" class="form-control" id="book-title" placeholder="Enter Book title" required>
@@ -95,7 +95,7 @@
                                             <label for="book-descrip">Description</label>
                                             <textarea name="book-descrip" id="book-descrip" cols="30" rows="5" class="form-control" required></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-primary"> Submit</button>
+                                        <button id="submit-btn" type="submit" class="btn btn-primary"> Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -106,13 +106,13 @@
                 <!-- section -->
                 <section class="mt-5" id="books-to-read"></section>
                 <!-- footer -->
-                <footer class="text-center position-absolute w-100 py-5">BookStow © Copyright 2021. All rights reserved.</footer>
+                <footer class="text-center">BookStow © Copyright 2021. All rights reserved.</footer>
             </main>
         </div>
     </div>
 
     <!-- contact button -->
-    <button id="contact-btn">Contact</button>
+    <button id="contact-btn"><i class="bi bi-envelope"></i>Contact</button>
 
     <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
