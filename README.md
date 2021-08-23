@@ -7,6 +7,5 @@ BookStow is a book inventory application that allows users to keep track of book
 - Add books to the library.
 - View book information.
 - Change book status *(to read, currently reading, and complete)*.
-- Cross platform
 
   
