@@ -264,6 +264,7 @@ class View {
     if (path === "/single.html") {
       const section = document.querySelector("#single-book");
       section.insertAdjacentHTML("afterbegin", HTML);
+      document.title = currentBook.title;
     }
 
     this.setBookStatus(currentBook);
