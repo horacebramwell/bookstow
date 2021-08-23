@@ -76,7 +76,7 @@ class Utils {
     return bookHTML;
   }
 
-  static buildSinglePageTemplate(book) {
+  static SinglePageTemplate(book) {
     const singlePageHTML = `
     <img src="${book.cover}" alt="" class="rounded mx-auto d-block mb-4 w-sm-75 shadow-lg" id="single-book-cover">
     <h1 class="text-center mt-5 text-primary">${book.title}</h1>
@@ -99,7 +99,7 @@ class Utils {
         </div>
       </div>
 
-    <p class='w-75 m-auto text-center mt-3'>
+    <p class='w-75 m-auto text-center mt-5'>
         ${book.summary}
     </p>
     `;

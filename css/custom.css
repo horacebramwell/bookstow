@@ -110,9 +110,10 @@ html {
 #currently-reading,
 #single-book,
 #books-to-read,
-#recently-added, #all-books {
+#recently-added, #all-books, #contact{
   margin-bottom: 20rem !important;
 }
+
 
 .page-header,
 .section-header {
@@ -153,6 +154,10 @@ footer {
 /* padding */
 .p-5 {
   padding: 1rem !important;
+}
+
+.mt-5 {
+  margin-top: 3.5rem !important;
 }
 
 /* Books */

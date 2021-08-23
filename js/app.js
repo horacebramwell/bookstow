@@ -258,7 +258,7 @@ class View {
     let currentBook = localStorage.getItem("activebook");
     currentBook = JSON.parse(currentBook);
 
-    const HTML = Utils.buildSinglePageTemplate(currentBook);
+    const HTML = Utils.SinglePageTemplate(currentBook);
     const path = window.location.pathname;
 
     if (path === "/single.html") {
