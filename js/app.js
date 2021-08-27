@@ -132,6 +132,17 @@ class View {
     this.path = window.location.pathname;
     this.books = e.allBooks;
 
+
+    if(this.path == "/"){
+      this.addInDashboard(
+        e.allBooks,
+        e.booksToRead,
+        e.booksCurrentlyReading,
+        e.booksRead
+      );
+    }
+
+    
     switch (this.path) {
       case "/index.html":
         this.addInDashboard(

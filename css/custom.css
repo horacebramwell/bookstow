@@ -49,6 +49,10 @@ html {
   padding-left: 10px !important;
 }
 
+a.current-page:hover {
+  color: rgb(184, 184, 184) !important;
+}
+
 /* LAYOUT
 -------------------------- */
 .navbar-nav {
@@ -284,6 +288,8 @@ btn-primary:not(:disabled):not(.disabled).active,
   background-color: #0c5063 !important;
   color: #fff !important;
 }
+
+
 
 /* modal */
 .modal {

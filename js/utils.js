@@ -9,6 +9,8 @@ class Utils {
     links.forEach((link) => {
       if (href === link.href) {
         link.classList.add("current-page");
+      }else if(window.location.pathname !== "/") {
+        link.classList.remove("current-page");
       }
     });
   }
