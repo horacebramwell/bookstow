@@ -204,7 +204,7 @@ class View {
     const recentlyAddedSection = document.querySelector("#recently-added");
     const recentlyAddedRowHTML = `<div class="row mt-5" id="recently-added-books"> </div>`;
     recentlyAddedSection.insertAdjacentHTML("beforeend", recentlyAddedRowHTML);
-    const recentlyAddedBooks = allBooks.slice(Math.max(allBooks.length - 8, 0));
+    const recentlyAddedBooks = allBooks.slice(Math.max(allBooks.length - 6, 0));
 
     recentlyAddedBooks.forEach((book) => {
       const bookHTML = Utils.recentlyAddedTemplate(

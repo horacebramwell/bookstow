@@ -1,7 +1,7 @@
 /* IMPORTS
 --------------------------- */
-@import url("https://use.typekit.net/rrk8hnd.css");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
+@import url('https://use.typekit.net/rrk8hnd.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 
 /* BASE
 -------------------------- */
@@ -24,7 +24,7 @@ html {
 -------------------------- */
 .text-secondary {
   color: #212121 !important;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
 }
 
@@ -114,10 +114,11 @@ a.current-page:hover {
 #currently-reading,
 #single-book,
 #books-to-read,
-#recently-added, #all-books, #contact{
+#recently-added,
+#all-books,
+#contact {
   margin-bottom: 20rem !important;
 }
-
 
 .page-header,
 .section-header {
@@ -289,15 +290,13 @@ btn-primary:not(:disabled):not(.disabled).active,
   color: #fff !important;
 }
 
-
-
 /* modal */
 .modal {
   animation: cardSlideIn 0.5s ease-in-out;
 }
 
 /* form */
-input[type="file"] {
+input[type='file'] {
   line-height: 1.2 !important;
 }
 
@@ -313,7 +312,7 @@ input[type="file"] {
 
 /* UTILS
 -------------------------- */
-[aria-hidden="true"] {
+[aria-hidden='true'] {
   display: none;
 }
 
@@ -380,6 +379,7 @@ input[type="file"] {
 
 /* medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+
   .page-header,
   .section-header {
     text-align: left;
@@ -430,8 +430,17 @@ input[type="file"] {
   }
 }
 
+@media (min-width: 767px) and (max-width: 992px) {
+  .col-md-6 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 /* large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+@media (max-width: 992px) {
+  
 }
 
 /* extra large devices (large desktops, 1200px and up) */

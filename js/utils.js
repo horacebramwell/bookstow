@@ -59,7 +59,7 @@ class Utils {
 
   static recentlyAddedTemplate(cover, title, author) {
     const bookHTML = `
-    <div class="col-sm-6 col-md-6 col-xl-3 mb-3"> 
+    <div class="col-sm-6 col-md-6 col-xl-4 mb-4"> 
       <div class="card p-0 h-100 book">
         <div class="row g-0 align-center h-100">
           <div class="col-4 book-background">
